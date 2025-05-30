@@ -64,5 +64,5 @@ Global Flags:
 |          cmd          |                           命令执行                           |
 |          xxe          |                                                              |
 |       upload          |                                                              |
-|       bypass403       | 							403 绕过检测 |
+|       bypass403       | 	                      403 绕过检测 |
 |         crlf          |                           crlf注入                           |
