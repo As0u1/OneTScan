@@ -17,7 +17,7 @@ OneTScan.exe  web --listen :9081 -o output.html
 
 一些配置可以通过config.yaml修改
 
-`./Jie web -h`
+`./OneTScan web -h`
 
 ```bash
 Flags:
