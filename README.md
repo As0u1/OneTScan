@@ -1,60 +1,44 @@
 # OneTScan
-被动代理扫描工具，帮助进行渗透测试
-# 被动代理
-通过 go-mitmproxy 实现。
-## 证书下载
-被动代理下HTTPS 网站需要安装证书，HTTPS 证书相关逻辑与 mitmproxy 兼容，
-证书会在首次启动命令后自动生成，路径为 ~/.mitmproxy/mitmproxy-ca-cert.pem。windows在C盘的用户名目录下
-安装信任根证书
+安全漏洞扫描工具
+# 功能介绍
+- 子域名爆破
+- 子域名被动收集
+- 端口扫描
+- 站点探测存活
+- 目录扫描
+- 动态浏览器爬虫
+- 指纹识别
+- POC漏洞导入，扫描
+- 敏感信息检测
+- 数据统计
+- 常规漏洞扫描（自研类xray）
+# todo
+- 被动子域名收集
+- 基于目录的指纹扫描
+- 对危险接口做分离（如delete等）
+- waybackurl获取历史接口
 
-## 启动
-OneTScan.exe  web --listen :9081 -o output.html
-这样会监听 9081 端口
+# 功能详解
+## 子域名收集
+主动使用字典进行子域名爆破，被动使用各个接口进行子域名的收集，例如fofa，quake等。
+后续增加在爬虫过程中的子域名收集。
 
-## 基本使用
+## 端口扫描
+目前只支持对端口的扫描，并不支持对端口的服务进行指纹识别
 
-### 配置
+## 目录扫描
+使用go以及更快的fasthttp，扫描速度远超dirsearch
 
-一些配置可以通过config.yaml修改
+## 敏感信息检测
+参考arl灯塔wih，在爬虫过程中对响应进行识别。可执行修改规则文件。
+<img width="2118" height="1314" alt="image" src="https://github.com/user-attachments/assets/bfb0cca3-f299-44e6-82a5-317e5aaeb7ef" />
 
-`./OneTScan web -h`
+## 爬虫
+采用浏览器动态爬虫，不采用静态爬虫。速度比静态慢，但爬取接口更全面更多，支持表单填充和点击，能够获取到POST接口以及参数
 
-```bash
-Flags:
-  -h, --help             help for web
-      --listen string    use proxy resource collector, value is proxy addr, (example: 127.0.0.1:9080).
-                         被动模式监听的代理地址，默认 127.0.0.1:9080
-      --np               not run plugin.
-                         禁用所有的插件
-  -p, --plugin strings   Vulnerable Plugin, (example: --plugin xss,csrf,sql,dir ...)
-                         指定开启的插件，当指定 all 时开启全部插件
-
-Global Flags:
-      --debug           debug
-  -o, --out string      output report file(eg:vulnerability_report.html)
-                        漏洞结果报告保存地址
-      --proxy string    proxy, (example: --proxy http://127.0.0.1:8080)
-                        指定 http/https 代理
-```
-
-## 功能
-
-通过主动或者被动收集过来的流量插件内部会判断是否扫描过 （TODO 扫描插件是否要按某个顺序执行？）
-
-### 信息收集
-
-- 网站指纹信息(TODO)
-- 敏感信息 
-- 主动的路径扫描
-
-#### 扫描目录结构
-
-`scan`目录为扫描插件库，每个目录的插件会处理不同情形
-
--   PerFile 针对每个url，包括参数啥的
--   PerFolder 针对url的目录，会分隔目录分别访问
--   PerServer 对每个domain 的，也就是说一个目标只扫描一次
-
+## 常规漏洞扫描
+自研的跟xray的差不多的黑盒扫描，爬虫会将数据全部交给这部分来进行扫描，对各个参数以及其他部分进行fuzz，支持多种漏洞。
+支持插件如下
 |         插件          |                             介绍                             |
 | :-------------------: | :----------------------------------------------------------: |
 |          xss          |           语义分析、原型链污染、dom 污染点传播分析           |
@@ -66,3 +50,20 @@ Global Flags:
 |       upload          |                                                              |
 |       bypass403       | 	                      403 绕过检测 |
 |         crlf          |                           crlf注入                           |
+|         bucket          |                           存储桶未授权                           |
+
+## 指纹扫描
+支持添加，导入，导出指纹。
+指纹规则：
+<img width="2280" height="720" alt="image" src="https://github.com/user-attachments/assets/f04a9fea-6c56-4c71-9332-5f8d788b6a36" />
+
+## POC扫描
+POC部分采用的是nuclei，可以自行上传nuclei插件。注意目前POC扫描只会基于指纹进行扫描，只有指纹识别到，才会采用对用的nuclei-POC。（后续会添加全量扫描的选项）
+标签即nuclei模板中的tag，与指纹扫描为映射关系
+例如tag中带有apache，那么指纹识别时，apache被识别到，才会使用该nuclei模板进行扫描
+注意：匹配模式为精准匹配，需要将指纹名一字不差的写在tag上 。
+
+## 数据统计
+在爬取过很多站点后，点击“统计路径”，即可对数据库中所有的爬虫爬取到的路径进行统计，以及进行自动化的去重（例如扫描过程中经常会出现相同的好几个甚至几十个一模一样的web站点，对这种重复爬取的路径进行统计是没有意义的，会对其body进行hash计算。如果两个站点的body_hash相同认为是同站点，则不会重复统计路径）
+这个功能用于统计高频率出现的爬虫路径，加入字典。
+
