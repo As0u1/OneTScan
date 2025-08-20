@@ -55,6 +55,15 @@
 |         crlf          |                           crlf注入                           |
 |         bucket          |                           存储桶未授权                           |
 
+示例
+<img width="2262" height="1284" alt="image" src="https://github.com/user-attachments/assets/514f3de9-b5ac-4d9b-8539-d57e2c4200d3" />
+详细漏洞描述
+<img width="2195" height="306" alt="image" src="https://github.com/user-attachments/assets/4a1b9355-fb4a-4692-aa44-9f57b595a061" />
+详细请求包
+<img width="2040" height="969" alt="image" src="https://github.com/user-attachments/assets/2e9ada47-6223-450f-8bc9-ff70155f2979" />
+
+
+
 ## 指纹扫描
 支持添加，导入，导出指纹。
 指纹规则：
@@ -73,3 +82,5 @@ POC部分采用的是nuclei，可以自行上传nuclei插件。注意目前POC�
 ## 数据统计
 在爬取过很多站点后，点击“统计路径”，即可对数据库中所有的爬虫爬取到的路径进行统计，以及进行自动化的去重（例如扫描过程中经常会出现相同的好几个甚至几十个一模一样的web站点，对这种重复爬取的路径进行统计是没有意义的，会对其body进行hash计算。如果两个站点的body_hash相同认为是同站点，则不会重复统计路径）
 这个功能用于统计高频率出现的爬虫路径，加入字典，打造自己的目录字典。
+<img width="2553" height="1344" alt="image" src="https://github.com/user-attachments/assets/8ac748fe-1ff6-42f0-aab9-7d8aca15adcd" />
+
