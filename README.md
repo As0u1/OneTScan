@@ -23,16 +23,24 @@
 ## 子域名收集
   主动使用字典进行子域名爆破，被动使用各个接口进行子域名的收集，例如fofa，quake等。  
   后续增加在爬虫过程中的子域名收集。
+  被动收集配置文件 provider-config.yaml，支持从以下来源中获取  
+  BeVigil, BinaryEdge, BufferOver, C99, Censys, CertSpotter, Chaos, Chinaz, DNSDB, Fofa, FullHunt, GitHub, Intelx, PassiveTotal, quake, Robtex, SecurityTrails, Shodan, ThreatBook, VirusTotal, WhoisXML API, ZoomEye API china - worldwide, dnsrepo, Hunter, Facebook, BuiltWith  
+  Censys、PassiveTotal、Fofa、Intellix 和 360quake 等来源的复合键需要用冒号 (:) 分隔。
+文件示例如下  
+  <img width="2105" height="1074" alt="image" src="https://github.com/user-attachments/assets/9ebfd61e-54ec-4e78-b7f6-d3cd0ffccd19" />
+  <img width="2127" height="1272" alt="image" src="https://github.com/user-attachments/assets/63c2e474-d8e9-4834-94e3-b86f700ecc3a" />
+
 
 ## 端口扫描
-  目前只支持对端口的扫描，并不支持对端口的服务进行指纹识别
+  目前只支持对端口的扫描，并不支持对端口的服务进行指纹识别。  
+  支持端口被动收集，来源于shadon
 
 ## 目录扫描
   使用go以及更快的fasthttp，扫描速度远超dirsearch，降噪更好。
 <img width="2262" height="1338" alt="image" src="https://github.com/user-attachments/assets/eb424f3d-8b5e-461b-9053-07f2f36b8926" />
 
 ## 敏感信息检测
-  参考arl灯塔wih，在爬虫过程中对响应进行识别。可执行修改规则文件。
+  参考arl灯塔wih，在爬虫过程中对响应进行识别。可执行修改规则文件wih.yaml
 <img width="2118" height="1314" alt="image" src="https://github.com/user-attachments/assets/bfb0cca3-f299-44e6-82a5-317e5aaeb7ef" />
 
 ## 爬虫
