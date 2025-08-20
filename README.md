@@ -21,7 +21,8 @@
 
 # 功能详解
 ## 子域名收集
-  主动使用字典进行子域名爆破，被动使用各个接口进行子域名的收集，例如fofa，quake等。  
+  主动使用字典进行子域名爆破，字典为subnames.txt。  
+  被动使用各个接口进行子域名的收集，例如fofa，quake等。  
   后续增加在爬虫过程中的子域名收集。
   被动收集配置文件 provider-config.yaml，支持从以下来源中获取  
   BeVigil, BinaryEdge, BufferOver, C99, Censys, CertSpotter, Chaos, Chinaz, DNSDB, Fofa, FullHunt, GitHub, Intelx, PassiveTotal, quake, Robtex, SecurityTrails, Shodan, ThreatBook, VirusTotal, WhoisXML API, ZoomEye API china - worldwide, dnsrepo, Hunter, Facebook, BuiltWith  
@@ -36,7 +37,7 @@
   支持端口被动收集，来源于shadon
 
 ## 目录扫描
-  使用go以及更快的fasthttp，扫描速度远超dirsearch，降噪更好。
+  使用go以及更快的fasthttp，扫描速度远超dirsearch，降噪更好。字典为dict.txt
 <img width="2262" height="1338" alt="image" src="https://github.com/user-attachments/assets/eb424f3d-8b5e-461b-9053-07f2f36b8926" />
 
 ## 敏感信息检测
@@ -73,7 +74,8 @@
 
 
 ## 指纹扫描
-  支持添加，导入，导出指纹。
+  支持添加，导入，导出指纹。  
+  本工具提供了finger.json，可以直接将指纹上传。（注意工具不会从finger.json中读取规则，是从数据库，所以如果需要请上传）
   指纹规则：
 <img width="2280" height="720" alt="image" src="https://github.com/user-attachments/assets/f04a9fea-6c56-4c71-9332-5f8d788b6a36" />
 <img width="2526" height="708" alt="image" src="https://github.com/user-attachments/assets/063557bb-bb43-4039-9e2c-974448b3e3ed" />
