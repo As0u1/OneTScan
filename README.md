@@ -18,6 +18,7 @@
 - 对危险接口做分离（如delete等）
 - waybackurl获取历史接口
 - 常规漏洞扫描增加插件（ssti，缓存中毒等）
+- dnslog平台
 
 # 功能详解
 ## 子域名收集
@@ -70,6 +71,8 @@
 <img width="2195" height="306" alt="image" src="https://github.com/user-attachments/assets/4a1b9355-fb4a-4692-aa44-9f57b595a061" />
 详细请求包
 <img width="2040" height="969" alt="image" src="https://github.com/user-attachments/assets/2e9ada47-6223-450f-8bc9-ff70155f2979" />
+请注意其中关于ssrf和rce以及xxe的无回显检测，会使用dnslog，而本工具暂时不自生成dnslog，所以请将dnslog地址配置在reverse的host和Domain处。
+<img width="2115" height="204" alt="image" src="https://github.com/user-attachments/assets/742a292a-4554-494b-b28d-66ddcf841bce" />
 
 
 
