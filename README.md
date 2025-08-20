@@ -21,8 +21,8 @@
 - dnslog平台
   
 # 如何安装
-目前只支持docker安装，首先你需要下载docker，docker compose以及OneTscan.tar.bz2  
-首先解压tar -xjvf onetscan.tar.bz2并文件复制到目标机器。   
+目前只支持docker安装，首先你需要下载docker，docker compose以及OneTscan.tar.7z  
+首先解压7z x onetscan.7z并文件复制到目标机器。   
 在目标机器上执行docker load -i onetscan.tar  
 然后使用docker compose up -d  
 访问目标机器的8083端口  
