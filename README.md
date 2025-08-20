@@ -1,5 +1,7 @@
 # OneTScan
 安全漏洞扫描工具
+<img width="1644" height="861" alt="image" src="https://github.com/user-attachments/assets/248b1f9b-df7e-43a6-9d3f-c64b63fa0436" />
+
 # 功能介绍
 - 子域名爆破
 - 子域名被动收集
