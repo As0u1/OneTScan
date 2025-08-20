@@ -19,6 +19,14 @@
 - waybackurl获取历史接口
 - 常规漏洞扫描增加插件（ssti，缓存中毒等）
 - dnslog平台
+  
+# 如何安装
+目前只支持docker安装，首先你需要下载docker，docker compose以及OneTscan.tar  
+将 onetscan.tar 文件复制到目标机器。  
+在目标机器上执行docker load -i onetscan.tar  
+然后使用docker compose up -d  
+访问目标机器的8083端口  
+默认账号密码admin/admin123
 
 # 功能详解
 ## 子域名收集
